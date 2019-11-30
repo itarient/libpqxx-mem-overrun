@@ -11,7 +11,7 @@ GRANT ALL ON DATABASE libpqxx_db TO libpqxx_user;
 -- Reconnect to libpqxx_db as libpqxx_user
 \c libpqxx_db libpqxx_user
 
-\set test_table_rowcount 1000000
+\set test_table_rowcount 100000
 
 CREATE OR REPLACE FUNCTION random_string()
 RETURNS text

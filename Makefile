@@ -7,7 +7,7 @@ LDFLAGS=
 
 LIBPQXX_INCLUDE=/home/george/soft/libpqxx/include
 LIBPQXX_LIBRARY=/home/george/soft/libpqxx/lib
-LIBPQXX_LIBS=-lpqxx -lpq
+LIBPQXX_LIBS=-lpqxx -lpq -lpthread
 
 .cpp.o:
 	$(CXX) $(CXXFLAGS) -I $(LIBPQXX_INCLUDE) -o $@ -c $<
