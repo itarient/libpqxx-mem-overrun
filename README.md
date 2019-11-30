@@ -43,13 +43,13 @@ valgrind ./libpqxx-mem-overrun
 
 Output example
 
-==20086== 
+==20086==
 ==20086== HEAP SUMMARY:
 ==20086==     in use at exit: 0 bytes in 0 blocks
 ==20086==   total heap usage: 4,371,820 allocs, 4,371,820 frees, 7,884,699,802 bytes allocated
-==20086== 
+==20086==
 ==20086== All heap blocks were freed -- no leaks are possible
-==20086== 
+==20086==
 ==20086== For lists of detected and suppressed errors, rerun with: -s
 ==20086== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 
