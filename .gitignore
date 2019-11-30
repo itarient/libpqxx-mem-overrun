@@ -1,0 +1,5 @@
+libpqxx-mem-overrun
+*.o
+*.png
+mprofile*
+venv/**
