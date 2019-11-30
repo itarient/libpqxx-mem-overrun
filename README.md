@@ -1,3 +1,5 @@
+# libpqxx-mem-overrun
+
 The short example to investigate the following issue.
 The libpqxx library in multithreaded use cases does not
 enough free memory allocated for results of the query.
@@ -7,7 +9,7 @@ libpqxx was built from sources (master branch) using
 (gcc version 9.2.0)
 
 
--- Prepare test database --
+# Prepare test database
 
 To run test you should prepare test database before.
 Please review SQL scripts in "sql" subdirectory.
@@ -24,7 +26,7 @@ following command
 psql -U postgres < sql/fini_database.sql
 
 
--- Measure results --
+# Measure results
 
 1. First, youn need prepare executable. Change a number of threads
 and scale factor in source file. Be carreful not to overfull memory of
@@ -43,6 +45,7 @@ valgrind ./libpqxx-mem-overrun
 
 Output example
 
+```
 ==20086==
 ==20086== HEAP SUMMARY:
 ==20086==     in use at exit: 0 bytes in 0 blocks
@@ -52,6 +55,7 @@ Output example
 ==20086==
 ==20086== For lists of detected and suppressed errors, rerun with: -s
 ==20086== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+```
 
 3. Install empty python environment and init it
 
