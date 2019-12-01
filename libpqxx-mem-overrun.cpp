@@ -5,11 +5,17 @@
 #include <iostream>
 #include <pqxx/pqxx>
 
-pqxx::result query()
+pqxx::connection connection_pool[5] = {
+	pqxx::connection("postgresql://libpqxx_user@localhost/libpqxx_db"),
+	pqxx::connection("postgresql://libpqxx_user@localhost/libpqxx_db"),
+	pqxx::connection("postgresql://libpqxx_user@localhost/libpqxx_db"),
+	pqxx::connection("postgresql://libpqxx_user@localhost/libpqxx_db"),
+	pqxx::connection("postgresql://libpqxx_user@localhost/libpqxx_db")
+};
+	
+pqxx::result query(pqxx::connection& conn)
 {
-  pqxx::connection c{"postgresql://libpqxx_user@localhost/libpqxx_db"};
-
-  pqxx::work txn{c};
+  pqxx::work txn{conn};
   pqxx::result r = txn.exec("SELECT * FROM test_table");
   txn.commit();
 
@@ -38,7 +44,7 @@ struct test_thread {
 				std::unique_lock<std::mutex> lk(pool_access);
 				pool_cv.wait(lk, []{ return pool_start; });
 			}
-			pqxx::result r = query(); 
+			pqxx::result r = query(connection_pool[thread_id - 1]); 
 			for (auto row: r) {
 				std::unique_lock<std::mutex> lock(cout_access);
 
